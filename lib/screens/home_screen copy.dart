@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text('$contador', style: fontSize30),
-            const Text('123hola 6',
+            const Text('123hola 6 420 420',
                 style: TextStyle(fontStyle: FontStyle.italic, fontSize: 20)),
           ],
         )),
@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
         //   // child: const Text('weed'),
         //   child: const Icon(Icons.paid),
         //   onPressed: () {
-        //     print('Joel Broka');
+        //     print('Joel Broka, cambio de prueba');
         //   },
         // ),
 
