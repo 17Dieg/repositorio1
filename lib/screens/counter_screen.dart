@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class CounterScreen extends StatefulWidget {
+  const CounterScreen({Key? key}) : super(key: key);
+
+  @override
+  State<CounterScreen> createState() => _CounterScreenState();
+}
+
+class _CounterScreenState extends State<CounterScreen> {
+  int contador = 420;
 
   @override
   Widget build(BuildContext context) {
     TextStyle fontSize30 = const TextStyle(fontSize: 35);
-    int contador = 420;
+
     return Scaffold(
         appBar: AppBar(
-          title: const Text('appbar'),
+          title: const Text('counterscreen'),
           elevation: 10,
           backgroundColor: Colors.blue,
         ),
@@ -46,17 +53,31 @@ class HomeScreen extends StatelessWidget {
             FloatingActionButton(
               // first FAB to perform decrement
               onPressed: () {
-                print('Joel Broka');
+                // print('Joel Broka');
                 contador++;
+                setState(() {});
               },
-              child: const Icon(Icons.donut_large),
+              child: const Icon(Icons.exposure_plus_1_sharp),
             ),
             FloatingActionButton(
+              child: const Icon(Icons.access_alarm_sharp),
+
               // second FAB to perform increment
               onPressed: () {
-                print('Joel Broka');
+                // print('Joel Broka');
+                contador = contador * 0;
+                setState(() {});
               },
-              child: const Icon(Icons.car_crash),
+            ),
+            FloatingActionButton(
+              child: const Icon(Icons.exposure_minus_1_sharp),
+
+              // second FAB to perform increment
+              onPressed: () {
+                // print('Joel Broka');
+                contador = contador * -2;
+                setState(() {});
+              },
             ),
           ],
         ));
