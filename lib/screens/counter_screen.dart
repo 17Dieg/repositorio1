@@ -10,76 +10,92 @@ class CounterScreen extends StatefulWidget {
 class _CounterScreenState extends State<CounterScreen> {
   int contador = 420;
 
+  void increase() {
+    contador++;
+    setState(() {});
+  }
+
+  void decrease() {
+    contador--;
+    setState(() {});
+  }
+
+  void reset() {
+    contador = contador * 0;
+    setState(() {});
+  }
+
+  void cuatroveinte() {
+    contador = 420;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     TextStyle fontSize30 = const TextStyle(fontSize: 35);
 
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('counterscreen'),
-          elevation: 10,
-          backgroundColor: Colors.blue,
+      appBar: AppBar(
+        title: const Text('first page'),
+        elevation: 10,
+        backgroundColor: Colors.blue,
+      ),
+      backgroundColor: Colors.lightGreen,
+      body: Center(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text('$contador', style: fontSize30),
+          const Text('123hola 6 420 420',
+              style: TextStyle(fontStyle: FontStyle.italic, fontSize: 20)),
+        ],
+      )),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: CustomFloatingAction(
+          increaseFn: increase,
+          decreaseFn: decrease,
+          resetFn: reset,
+          cuatroveinteFn: cuatroveinte),
+    );
+  }
+}
+
+class CustomFloatingAction extends StatelessWidget {
+  final Function increaseFn;
+  final Function decreaseFn;
+  final Function resetFn;
+  final Function cuatroveinteFn;
+
+  const CustomFloatingAction({
+    super.key,
+    required this.increaseFn,
+    required this.decreaseFn,
+    required this.resetFn,
+    required this.cuatroveinteFn,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        FloatingActionButton(
+          child: const Icon(Icons.exposure_plus_1_sharp),
+          onPressed: () => increaseFn(),
         ),
-        backgroundColor: Colors.lightGreen,
-        body: Center(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text('$contador', style: fontSize30),
-            const Text('123hola 6 420 420',
-                style: TextStyle(fontStyle: FontStyle.italic, fontSize: 20)),
-          ],
-        )),
-        // floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
-        // floatingActionButton: FloatingActionButton(
-        //   // child: const Text('weed'),
-        //   child: const Icon(Icons.paid),
-        //   onPressed: () {
-        //     print('Joel Broka, cambio de prueba');
-        //   },
-        // ),
-
-        // floatingActionButton: FloatingActionButton(
-        //   // child: const Text('weed'),
-        //   child: const Icon(Icons.car_crash),
-        //   onPressed: () {
-        //     print('holaaa');
-        //   },
-        // ),
-
-        floatingActionButton: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            FloatingActionButton(
-              // first FAB to perform decrement
-              onPressed: () {
-                // print('Joel Broka');
-                contador++;
-                setState(() {});
-              },
-              child: const Icon(Icons.exposure_plus_1_sharp),
-            ),
-            FloatingActionButton(
-              child: const Icon(Icons.access_alarm_sharp),
-
-              // second FAB to perform increment
-              onPressed: () {
-                // print('Joel Brokaaaaaaaaaaaa');
-                contador = contador * 0;
-                setState(() {});
-              },
-            ),
-            FloatingActionButton(
-              child: const Icon(Icons.exposure_minus_1_sharp),
-
-              // second FAB to perform increment
-              onPressed: () {
-                // print('Joel Broka');
-                contador = contador * -2;
-                setState(() {});
-              },
-            ),
-          ],
-        ));
+        FloatingActionButton(
+          child: const Icon(Icons.exposure_minus_1_sharp),
+          onPressed: () => decreaseFn(),
+        ),
+        FloatingActionButton(
+          onPressed: () => resetFn(),
+          child: const Icon(Icons.exposure_zero_outlined),
+        ),
+        FloatingActionButton(
+          onPressed: () => cuatroveinteFn(),
+          child: const Icon(Icons.read_more_sharp),
+        ),
+      ],
+    );
   }
 }
